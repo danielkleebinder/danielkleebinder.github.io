@@ -1,0 +1,159 @@
+<html>
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        * {
+            font-weight: 100;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            text-align: justify;
+            padding-top: 8rem;
+            padding-bottom: 8rem;
+        }
+
+        section > * {
+            width: 900px;
+        }
+
+        section:nth-child(2) {
+            background: #0c573122;
+        }
+
+        section h1 {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-top: 3rem;
+        }
+
+        section p, pre {
+            margin-top: 2rem;
+        }
+
+        pre {
+            padding: 2rem;
+            background: #0c573122;
+            border-radius: .5rem;
+        }
+    </style>
+</head>
+<body>
+<nav></nav>
+
+<header class="bg-leaf-lang text-white p-28 flex flex-col items-center">
+
+    <img src="assets/images/leaf-lang-icon.png" class="w-32 py-16"/>
+
+    <h1 class="text-5xl">The Leaf Programming Language</h1>
+    <p class="text-xl pt-8 opacity-80">A statically typed and interpreted programming language written in Kotlin</p>
+
+    <div class="text-xl pt-16">
+        <a class="bg-transparent hover:bg-green-500 text-white py-2 px-8 border border-green-500 hover:border-transparent rounded"
+           href="https://github.com/danielkleebinder/leaf-lang"
+           target="_blank">
+            View on GitHub
+        </a>
+    </div>
+</header>
+
+<main class="flex flex-col justify-center items-center">
+
+    <section>
+        <h1>What is Leaf?</h1>
+        <p>
+            The Leaf programming language is a statically and strongly typed, lexically scoped and interpreted
+            programming language using type inference that allows the developer to implement traits and custom types. It
+            is object oriented, but does not support inheritance because typically, it is a common source of
+            maintainability issues.
+        </p>
+        <p>
+            This programming language was solely written by me for educational purposes only. It should showcase some
+            concepts I learned in my Masters computer science courses at TU Vienna. Although I am sure it could
+            technically be used as production ready language, I would not recommend it yet.
+        </p>
+    </section>
+
+    <section>
+        <h1>Leaf by Example</h1>
+        <p>
+            This section shows you how to code using the leaf programming language.
+        </p>
+
+        <h2>Hello World</h2>
+        <p>
+            First off, let's start with the most common code example in the history of programming; the "hello world"
+            program. Leaf exports certain functions by default from it's core. One of these is the <code>println</code>
+            function that takes zero to any number of parameters.
+        </p>
+        <pre>println("Hello World")</pre>
+
+        <h2>Variables</h2>
+        <p>
+            Variables can be used like in any other programming language. Leaf, especially, distinguishes between
+            <code>const</code> and <code>var</code>. Constants cannot be modified after setting a value for the first
+            time, variables, on the other hand, can. Since Leaf is a statically typed programming language, each
+            declaration of a new variables requires either an initialization or a type specification.
+        </p>
+        <pre>
+const a                   // invalid
+const b: string           // invalid
+const c = 10              // valid
+var d: string = "Hello"   // valid
+var e: number = true      // invalid</pre>
+        <p>
+            (be careful to always match the declared type with the type of the r-value, otherwise, the static semantic
+            analyzer will error)
+        </p>
+
+        <h2>If Expression</h2>
+        <p>
+            Leaf knows different kinds of control structures. One of these is the <code>if</code> conditional
+            expression. The interpreter will execute different branches based on a given predicate. The value of the
+            last expression in the <code>if</code> or <code>else</code> branch will be returned an can be used in any
+            other kind of expression or statement.
+        </p>
+        <pre>
+const a = if false {
+  "This is impossible"
+} else {
+  "This is the else branch"
+}</pre>
+
+        <h2>Loop Statement</h2>
+        <p>
+            Another very useful control structure is the <code>loop</code>. It is used to run a single code block
+            multiple times. Compared to other programming languages, Leaf only knows this one kind of loop. A loop head
+            consists of three blocks. The init block that is run before the first loop iteration, the condition and the
+            step block that are both executed after each iteration.
+        </p>
+        <pre>
+loop var i = 0 : i < 10 : i = i + 1 {
+  println("This is iteration " + i)
+}</pre>
+        <p>
+            But loop can also be executed with only a condition block or without any block at all in the head. In the
+            latter case, the loop will run endlessly and has to be broken with <code>break</code> for example.
+        </p>
+        <pre>
+loop isHungry() { eat() }
+loop { break }</pre>
+
+    </section>
+</main>
+
+<footer class="bg-leaf-lang text-white p-28 flex flex-col items-center text-opacity-80">
+    (c) The leaf programming language is developed by Daniel Kleebinder for educational purposes.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .card {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            transition-property: all;
+            transition-duration: 500ms;
+            padding: 4rem;
+            border-radius: .5rem;
+            max-width: 700px;
+        }
+
+        .card .card-header {
+            display: flex;
+            align-items: center;
+        }
+
+        .card .card-body {
+            padding-top: 2rem;
+            text-align: justify;
+            opacity: .8;
+        }
+    </style>
+</head>
+<body>
+
+<header class="container mx-auto flex justify-center pt-24 pb-8">
+    <h1 class="text-4xl font-thin">A list of websites for my own projects</h1>
+</header>
+
+<div class="container mx-auto flex justify-center p-20">
+    <a class="card bg-leaf-lang hover:shadow-lg" href="leaf-lang.html">
+        <div class="card-header">
+            <img src="assets/images/leaf-lang-icon.png" class="w-16 pr-4"/>
+            <div class="text-2xl">The Leaf Programming Language</div>
+        </div>
+        <div class="card-body">
+            The Leaf programming language is a statically and strongly typed, lexically scoped and interpreted
+            programming language using type inference that allows the developer to implement traits and custom types. It
+            is object oriented, but does not support inheritance because typically, it is a common source of
+            maintainability issues.
+        </div>
+    </a>
+</div>
+</body>
+</html>

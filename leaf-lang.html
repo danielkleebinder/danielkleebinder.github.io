@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link href="styles.css" rel="stylesheet">
     <style>
@@ -12,21 +13,24 @@
             position: absolute;
             top: 0;
             right: 0;
+            left: 0;
+            overflow-x: auto;
         }
 
-        nav ul {
-            list-style-type: none;
-            margin: 2rem;
+        nav .links {
+            display: flex;
+            justify-content: flex-end;
+            width: fit-content;
+            margin-left: auto;
         }
 
-        nav ul li {
-            display: inline;
-        }
-
-        nav ul a {
+        nav .links a {
             padding: 1rem 2rem;
             color: white;
             text-transform: uppercase;
+            display: block;
+            min-width: min-content;
+            white-space: nowrap;
         }
 
         section {
@@ -74,14 +78,14 @@
 </head>
 <body>
 
-<header class="bg-leaf-lang text-white p-28 flex flex-col items-center">
+<header class="bg-leaf-lang text-white py-28 px-8 flex flex-col items-center">
 
     <nav>
-        <ul>
-            <li><a href="#what-is-leaf">What is Leaf?</a></li>
-            <li><a href="#tutorial">Tutorial</a></li>
-            <li><a href="#grammar">Grammar</a></li>
-        </ul>
+        <div class="links">
+            <a href="#what-is-leaf">What is Leaf?</a>
+            <a href="#tutorial">Tutorial</a>
+            <a href="#grammar">Grammar</a>
+        </div>
     </nav>
 
     <img src="assets/images/leaf-lang-icon.png" class="w-32 py-16"/>

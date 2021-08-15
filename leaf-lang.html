@@ -5,6 +5,28 @@
     <style>
         * {
             font-weight: 100;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 2rem;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul a {
+            padding: 1rem 2rem;
+            color: white;
+            text-transform: uppercase;
         }
 
         section {
@@ -13,16 +35,16 @@
             align-items: center;
             width: 100%;
             text-align: justify;
-            padding-top: 8rem;
-            padding-bottom: 8rem;
+            padding: 8rem 1rem;
         }
 
         section > * {
-            width: 900px;
+            width: 1000px;
+            max-width: 100%;
         }
 
         section:nth-child(2) {
-            background: #0c573122;
+            background: #0c573111;
         }
 
         section h1 {
@@ -42,15 +64,25 @@
 
         pre {
             padding: 2rem;
-            background: #0c573122;
+            background: #E0EAE4;
             border-radius: .5rem;
+            overflow: scroll;
+            overflow-y: auto;
+            overflow-x: auto;
         }
     </style>
 </head>
 <body>
-<nav></nav>
 
 <header class="bg-leaf-lang text-white p-28 flex flex-col items-center">
+
+    <nav>
+        <ul>
+            <li><a href="#what-is-leaf">What is Leaf?</a></li>
+            <li><a href="#tutorial">Tutorial</a></li>
+            <li><a href="#grammar">Grammar</a></li>
+        </ul>
+    </nav>
 
     <img src="assets/images/leaf-lang-icon.png" class="w-32 py-16"/>
 
@@ -68,7 +100,7 @@
 
 <main class="flex flex-col justify-center items-center">
 
-    <section>
+    <section id="what-is-leaf">
         <h1>What is Leaf?</h1>
         <p>
             The Leaf programming language is a statically and strongly typed, lexically scoped and interpreted
@@ -83,7 +115,7 @@
         </p>
     </section>
 
-    <section>
+    <section id="tutorial">
         <h1>Leaf by Example</h1>
         <p>
             This section shows you how to code using the leaf programming language.
@@ -149,10 +181,51 @@ loop isHungry() { eat() }
 loop { break }</pre>
 
     </section>
+
+    <section id="grammar">
+        <h1>Language Specification</h1>
+        <p>
+            The formal language definition in Backus-Naur form looks like the following. Feel free to implement it
+            yourself.
+        </p>
+
+        <h2>Statements</h2>
+        <pre>
+program    ::= statements
+block      ::= '{' (NL)* statements (NL)* '}'
+
+statements ::= statement ((';' | (NL)*) statement)*
+statement  ::= ('const' | 'var') (NL)* declaration
+             | 'async' statement
+             | 'return' ((NL)* expr)?
+             | 'break'
+             | 'continue'
+             | type-declaration
+             | assignment
+             | loop-stmt
+             | expr</pre>
+
+        <h2>Functions</h2>
+        <pre>
+fun-declaration ::= 'fun' (NL)* (fun-extension (NL)*)? (name (NL)*)?
+                     (fun-params (NL)*)?
+                     (fun-requires (NL)*)?
+                     (fun-ensures (NL)*)?
+                     (fun-returns (NL)*)?
+                     (fun-body)
+
+fun-extension ::= '<' type (NL)* (',' (NL)* type (NL)*)* '>' (NL)* '.'
+fun-params    ::= '(' (NL)* declarations (NL)* ')'
+fun-requires  ::= ':' (NL)* expr
+fun-ensures   ::= ':' (NL)* expr
+fun-return    ::= '->' (NL)* type
+fun-body      ::= block
+                | ('=' (NL)* statement)</pre>
+    </section>
 </main>
 
 <footer class="bg-leaf-lang text-white p-28 flex flex-col items-center text-opacity-80">
-    (c) The leaf programming language is developed by Daniel Kleebinder for educational purposes.
+    (c) The leaf programming language was developed by Daniel Kleebinder for educational purposes only.
 </footer>
 
 </body>

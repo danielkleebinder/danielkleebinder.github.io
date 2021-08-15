@@ -1,3 +1,56 @@
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: rgba(170, 170, 170, 0.8);
+    border-radius: 20px;
+}
+
 .bg-leaf-lang {
     background: #0c5731;
+}
+
+.bg-cryptonauts {
+    background: #6a1989;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: justify;
+    padding: 8rem 1rem;
+}
+
+section > * {
+    width: 1000px;
+    max-width: 100%;
+}
+
+section h1 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
+
+section h2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top: 3rem;
+}
+
+section p, pre {
+    margin-top: 2rem;
+}
+
+pre {
+    padding: 2rem;
+    background: #E0EAE4;
+    border-radius: .5rem;
+    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-left: 2px solid;
 }

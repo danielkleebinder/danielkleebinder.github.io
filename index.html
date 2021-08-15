@@ -25,27 +25,85 @@
             text-align: justify;
             opacity: .8;
         }
+
+        .icon-container {
+            min-width: 160px;
+            max-width: 160px;
+        }
     </style>
 </head>
 <body>
 
-<header class="container mx-auto flex justify-center pt-24 pb-8">
-    <h1 class="text-4xl font-thin">A list of websites for my own projects</h1>
+<header class="container mx-auto flex items-center py-32 font-thin flex-col">
+    <h1 class="text-4xl">A list of websites for my projects</h1>
+    <p class="mt-8">
+        Some of the projects listed below are still in active development, so enjoy them with caution ;-)
+    </p>
 </header>
 
-<div class="container mx-auto flex justify-center p-20">
-    <a class="card bg-leaf-lang hover:shadow-lg" href="leaf-lang.html">
-        <div class="card-header">
-            <img src="assets/images/leaf-lang-icon.png" class="w-16 pr-4"/>
-            <div class="text-2xl">The Leaf Programming Language</div>
+<main>
+
+    <section class="bg-leaf-lang text-white">
+        <div class="flex justify-between">
+            <div>
+                <div>
+                    <h1 class="text-2xl">The Leaf Programming Language</h1>
+                    <p>
+                        The Leaf programming language is a statically and strongly typed, lexically scoped and
+                        interpreted programming language using type inference that allows the developer to implement
+                        traits and custom types. It is object oriented, but does not support inheritance because
+                        typically, it is a common source of maintainability issues.
+                    </p>
+                </div>
+
+                <div class="mt-16">
+                    <a href="leaf-lang.html" class="mr-4">
+                        <button class="bg-transparent hover:bg-green-500 text-white py-2 px-8 border border-green-500 hover:border-transparent rounded">
+                            Learn more
+                        </button>
+                    </a>
+                    <a href="https://github.com/danielkleebinder/leaf-lang" target="_blank">
+                        <button class="bg-transparent hover:bg-green-500 text-white py-2 px-8 border border-green-500 hover:border-transparent rounded">
+                            View on GitHub
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="icon-container mt-8 ml-16 mr-8 hidden md:block">
+                <img src="assets/images/leaf-lang.png"/>
+            </div>
         </div>
-        <div class="card-body">
-            The Leaf programming language is a statically and strongly typed, lexically scoped and interpreted
-            programming language using type inference that allows the developer to implement traits and custom types. It
-            is object oriented, but does not support inheritance because typically, it is a common source of
-            maintainability issues.
+    </section>
+
+    <section class="bg-cryptonauts text-white mt-24">
+        <div class="flex justify-between">
+            <div>
+                <div>
+                    <h1 class="text-2xl">Cryptonauts Blockchain Game</h1>
+                    <p>
+                        Cryptonauts is a game which was developed during the course of Smart Contracts in the summer
+                        term 2021 at TU Vienna. The game is based on Solidity (the Smart Contract programming language
+                        of Ethereum - the global decentralized blockchain). It is a game about your personal astronaut
+                        that resides in the Cryptoverse. Your cryptonaut has a certain level and can improve on its
+                        skills over time.
+                    </p>
+                </div>
+
+                <div class="mt-16">
+                    <a href="https://github.com/danielkleebinder/cryptonauts" target="_blank">
+                        <button class="bg-transparent hover:bg-purple-500 text-white py-2 px-8 border border-purple-500 hover:border-transparent rounded">
+                            View on GitHub
+                        </button>
+                    </a>
+                </div>
+            </div>
+            <div class="icon-container mt-8 ml-16 mr-8 hidden md:block">
+                <img src="assets/images/cryptonauts.png"/>
+            </div>
         </div>
-    </a>
-</div>
+    </section>
+
+    <section></section>
+</main>
 </body>
 </html>

@@ -14,6 +14,7 @@
             top: 0;
             right: 0;
             left: 0;
+            z-index: 1000;
             overflow-x: auto;
         }
 
@@ -25,7 +26,7 @@
         }
 
         nav .links a {
-            padding: 1rem 2rem;
+            padding: .75rem 2rem;
             color: white;
             text-transform: uppercase;
             display: block;
@@ -303,9 +304,9 @@ fun-body      ::= block
     <section id="turing-complete">
         <h1>Turing Completeness</h1>
         <p>
-            As you might have already guess, the Leaf programming language is indeed Turing complete. This means, that
+            As you might have already guessed, the Leaf programming language is indeed Turing complete. This means, that
             it is basically powerful enough to solve any problem that can also be solved by any other programming
-            language (to be precise: by every other Turing machine).
+            language (to be precise: by any other Turing machine).
         </p>
         <p>
             Turing completeness can be shown by implementing a mapping between the WHILE and the Leaf programming
@@ -348,7 +349,7 @@ L <=> name</pre>
 <footer class="bg-leaf-lang text-white py-20 px-8 flex flex-col items-center text-opacity-80">
     <div>
         <a href="#" class="p-8 flex flex-col items-center">
-            <div class="text-3xl font-black">^</div>
+            <div class="text-4xl font-black">^</div>
             <div>Go back up</div>
         </a>
     </div>

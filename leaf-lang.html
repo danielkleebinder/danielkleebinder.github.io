@@ -39,7 +39,7 @@
             border-bottom: 1px solid #ffffff88;
         }
 
-        section:nth-child(2) {
+        section:nth-child(even) {
             background: #0c573111;
         }
 
@@ -57,6 +57,7 @@
             <a href="#what-is-leaf">What is Leaf?</a>
             <a href="#tutorial">Tutorial</a>
             <a href="#grammar">Grammar</a>
+            <a href="#turing-complete">Turing Completeness</a>
         </div>
     </nav>
 
@@ -105,6 +106,7 @@
         </p>
         <pre>println("Hello World")</pre>
 
+
         <h2>Variables</h2>
         <p>
             Variables can be used like in any other programming language. Leaf, especially, distinguishes between
@@ -123,6 +125,7 @@ var e: number = true      // invalid</pre>
             analyzer is going to produce an error)
         </p>
 
+
         <h2>If Expression</h2>
         <p>
             Leaf knows different kinds of control structures. One of these is the <code>if</code> conditional
@@ -136,6 +139,7 @@ const a = if false {
 } else {
   "This is the else branch"
 }</pre>
+
 
         <h2>Loop Statement</h2>
         <p>
@@ -155,6 +159,103 @@ loop var i = 0 : i < 10 : i = i + 1 {
         <pre>
 loop isHungry() { eat() }
 loop { break }</pre>
+
+
+        <h2>Functions</h2>
+
+        <p>
+            Functions are basically a piece of code that is reusable and can be parameterized. Leaf not only supports
+            functions, but functions are a first level-citizen of the programming language. This means that they are
+            treated in the same way like variables are. A function definition might look like the following:
+        </p>
+        <pre>
+fun sayHi(to: string) {
+  println("Hi " + to)
+}</pre>
+
+        <p>
+            First level functions allow the developer to create very powerful constructs using the functional
+            programming paradigm. They implement the Lambda calculus and can be used like parameters to other functions
+            creating higher-order functions.
+        </p>
+        <pre>
+fun compute(num: number, comp: fun) {
+  const result = comp(num, num)
+  println("Result: " + result)
+}
+
+// Invoke like:
+compute(10, fun (a: number, b: number) = a * b)</pre>
+
+        <p>
+            Besides the well known function parameters and the function body, functions in Leaf do have some unique
+            capabilities that are unusual compared to other programming languages. In the Leaf programming language,
+            you can specify pre- and post-conditions (also known as variant and covariant) for input and output
+            parameters as well. The pre-condition checks if the input parameter do match some formal definition while
+            the post-condition checks if the evaluation of the function body yield a valid result. You can access the
+            return value (the result) of the function by using the reserved <code>_</code> variable.
+        </p>
+        <pre>
+fun factorial(n: number) : n > 0 : _ > 0 -> number {
+  if n == 1 {
+    return 1
+  }
+  return n * factorial(n - 1)
+}
+
+factorial(10) // valid
+factorial(-2) // will produce a runtime error</pre>
+        <p>
+            The program will produce an error if either the pre- or post-condition is not met. Pre-conditions are
+            especially useful to guide the developer using your function into the correct direction. Post-conditions
+            are very useful as kind-of "regression test". They ensure that the condition is met even if you change
+            something in the function body.
+        </p>
+
+
+        <h2>Custom Types</h2>
+
+        <p>
+            Besides the built-in data types (like <code>number</code>, <code>string</code> or <code>bool</code>), Leaf
+            allows you to define your own custom data types. These are basically records that can be extended using
+            functions.
+        </p>
+        <pre>
+type Human {
+  name: string
+  sex = "female"
+  mom: Human, dad: Human
+}
+
+fun &lt;Human&gt;.sayHi(to: Human) {
+  println(object.name + " says hi to " + to.name)
+}
+
+const mom = new Human { "Anna Anderson" }
+const me = new Human { "Peter Peterson", sex = "male", mom }
+
+me.sayHi(mom)</pre>
+        <p>
+            Functions that are an extension of some type have to be written in <code>&lt;...&gt;</code>. You can specify
+            as many types for a single function extension as you like (separated with comma). Properties of a type can
+            then be accessed via the reserved <code>object</code> keyword. This is similar to <code>this</code> in other
+            programming languages, however, the <code>object</code> variables is inferred dynamically and based on the
+            types structure at runtime in Leaf. This allows for declaring multiple extensions for one function.
+        </p>
+
+
+        <h2>More Examples</h2>
+        <p>
+            For more examples, please visit the GitHub page of the programming languages. You will find some interesting
+            use cases and even some games written in Leaf to get started.
+        </p>
+        <div class="mt-12">
+            <a class="bg-transparent hover:bg-green-500 py-2 px-8 border border-green-500 hover:border-transparent rounded"
+               href="https://github.com/danielkleebinder/leaf-lang"
+               target="_blank">
+                View on GitHub
+            </a>
+        </div>
 
     </section>
 
@@ -198,10 +299,59 @@ fun-return    ::= '->' (NL)* type
 fun-body      ::= block
                 | ('=' (NL)* statement)</pre>
     </section>
+
+    <section id="turing-complete">
+        <h1>Turing Completeness</h1>
+        <p>
+            As you might have already guess, the Leaf programming language is indeed Turing complete. This means, that
+            it is basically powerful enough to solve any problem that can also be solved by any other programming
+            language (to be precise: by every other Turing machine).
+        </p>
+        <p>
+            Turing completeness can be shown by implementing a mapping between the WHILE and the Leaf programming
+            language. The WHILE
+            programming language is proven to be Turing complete and is defined as follows:
+        </p>
+        <pre>
+C ::= L := E
+| 'if' B 'then' C 'else' C
+| 'while' B 'do' C
+| C;C
+| skip
+
+B ::= 'true' | 'false' | E '=' E | B '&' B | '-' B
+E ::= L | n | (E + E)</pre>
+
+        <p>
+            The (bidirectional) mapping from WHILE to Leaf can be implemented as isomorphism function and looks like the
+            following (WHILE
+            on the left hand side and Leaf on the right hand side):
+        </p>
+
+        <pre>
+C <=> declaration | assignment
+    | if-expr
+    | loop-stmt
+    | statements
+    | empty
+
+B <=> 'true' | 'false' | expr
+E <=> expr
+L <=> name</pre>
+
+        <p>
+            Therefore, every program written in WHILE can also be expressed in Leaf without loss of semantic meaning.
+            The proof is
+            complete and Turing completeness has been shown.
+        </p>
+    </section>
+
 </main>
 
-<footer class="bg-leaf-lang text-white py-28 px-8 flex flex-col items-center text-opacity-80">
-    (c) The leaf programming language was developed by Daniel Kleebinder for educational purposes only.
+<footer class="bg-leaf-lang text-white py-28 px-8 flex flex-col text-opacity-80">
+    <div class="text-center">
+        The leaf programming language was developed by Daniel Kleebinder for educational purposes only.
+    </div>
 </footer>
 
 </body>

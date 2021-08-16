@@ -10,7 +10,7 @@
         }
 
         nav {
-            position: absolute;
+            position: fixed;
             top: 0;
             right: 0;
             left: 0;
@@ -50,16 +50,16 @@
 </head>
 <body>
 
-<header class="bg-leaf-lang text-white py-28 px-8 flex flex-col items-center">
+<nav class="bg-leaf-lang">
+    <div class="links">
+        <a href="#what-is-leaf">What is Leaf?</a>
+        <a href="#tutorial">Tutorial</a>
+        <a href="#grammar">Grammar</a>
+        <a href="#turing-complete">Turing Completeness</a>
+    </div>
+</nav>
 
-    <nav>
-        <div class="links">
-            <a href="#what-is-leaf">What is Leaf?</a>
-            <a href="#tutorial">Tutorial</a>
-            <a href="#grammar">Grammar</a>
-            <a href="#turing-complete">Turing Completeness</a>
-        </div>
-    </nav>
+<header class="bg-leaf-lang text-white py-28 px-8 flex flex-col items-center">
 
     <img src="assets/images/leaf-lang.png" class="w-32 py-16"/>
 
@@ -309,8 +309,7 @@ fun-body      ::= block
         </p>
         <p>
             Turing completeness can be shown by implementing a mapping between the WHILE and the Leaf programming
-            language. The WHILE
-            programming language is proven to be Turing complete and is defined as follows:
+            language. The WHILE programming language is proven to be Turing complete and is defined as follows:
         </p>
         <pre>
 C ::= L := E
@@ -324,8 +323,7 @@ E ::= L | n | (E + E)</pre>
 
         <p>
             The (bidirectional) mapping from WHILE to Leaf can be implemented as isomorphism function and looks like the
-            following (WHILE
-            on the left hand side and Leaf on the right hand side):
+            following (WHILE on the left hand side and Leaf on the right hand side):
         </p>
 
         <pre>
@@ -341,15 +339,20 @@ L <=> name</pre>
 
         <p>
             Therefore, every program written in WHILE can also be expressed in Leaf without loss of semantic meaning.
-            The proof is
-            complete and Turing completeness has been shown.
+            The proof is complete and Turing completeness has been shown.
         </p>
     </section>
 
 </main>
 
-<footer class="bg-leaf-lang text-white py-28 px-8 flex flex-col text-opacity-80">
-    <div class="text-center">
+<footer class="bg-leaf-lang text-white py-20 px-8 flex flex-col items-center text-opacity-80">
+    <div>
+        <a href="#" class="p-8 flex flex-col items-center">
+            <div class="text-3xl font-black">^</div>
+            <div>Go back up</div>
+        </a>
+    </div>
+    <div class="mt-8">
         The leaf programming language was developed by Daniel Kleebinder for educational purposes only.
     </div>
 </footer>
